@@ -14,4 +14,9 @@ class Person extends Entity
     {
         return $this->hasMany(Address::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

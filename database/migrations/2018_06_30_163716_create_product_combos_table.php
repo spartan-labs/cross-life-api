@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class User extends Migration
+class CreateProductCombosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class User extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('product_combos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class User extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('product_combos');
     }
 }
