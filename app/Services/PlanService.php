@@ -8,15 +8,12 @@
 
 namespace App\Services;
 
-
 use App\Interfaces\IService;
 use ArrayObject;
 
 class PlanService extends Service implements IService
 {
-    private $name;
-    private $price;
-    private $days;
+    private $plan;
 
     /**
      * PlanService constructor.

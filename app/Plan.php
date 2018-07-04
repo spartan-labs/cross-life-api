@@ -8,7 +8,14 @@ class Plan extends Entity
     protected $fillable = [
         'name',
         'description',
-        'price'
+        'price',
+        'seg',
+        'ter',
+        'qua ',
+        'qui ',
+        'sex',
+        'sab ',
+        'dom '
     ];
 
     public function students()
