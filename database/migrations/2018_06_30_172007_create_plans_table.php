@@ -13,7 +13,7 @@ class CreatePlansTable extends Migration
      */
     public function up()
     {
-        Schema::table('plans', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->text('description');

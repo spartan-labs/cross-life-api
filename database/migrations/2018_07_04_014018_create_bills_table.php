@@ -13,6 +13,7 @@ class CreateBillsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('bills');
         Schema::create('bills', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('price');
