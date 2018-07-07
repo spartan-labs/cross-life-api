@@ -13,17 +13,14 @@ use ArrayObject;
 
 class PersonService extends Service implements IService
 {
-    private $name;
-    private $document;
-    private $type;
-    private $addresses;
+    private $person;
 
     /**
      * PersonService constructor.
      */
-    public function __construct()
+    public function __construct($person = null)
     {
-        $this->addresses = new ArrayObject();
+        $this->person = $person;
     }
 
 

@@ -33,7 +33,6 @@ class UserController extends Controller implements IController
                 'message' => $e->getMessage()
             ], 500);
         }
-
     }
 
     public function update($id, Request $request)
@@ -49,7 +48,6 @@ class UserController extends Controller implements IController
                 'message' => $e->getMessage()
             ], 500);
         }
-
     }
 
     public function retreave(Request $request)
@@ -63,7 +61,8 @@ class UserController extends Controller implements IController
                 unset($array['page']);
             }
             return response()->json([
-                $userService->retreave($array, $page)], 200);
+                $userService->retreave($array, $page)
+            ], 200);
 
         } catch (Exception $e) {
             return response()->json([
@@ -77,7 +76,8 @@ class UserController extends Controller implements IController
         try {
             $userService = new UserService();
             return response()->json([
-                $userService->delete($id)], 200);
+                $userService->delete($id)
+            ], 200);
 
         } catch (Exception $e) {
             return response()->json([
@@ -91,7 +91,8 @@ class UserController extends Controller implements IController
         try {
             $userService = new UserService();
             return response()->json([
-                $userService->retreaveById($id)][0], 200);
+                $userService->retreaveById($id)
+            ][0], 200);
 
         } catch (Exception $e) {
             return response()->json([
