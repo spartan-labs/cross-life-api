@@ -6,9 +6,6 @@ use App\Interfaces\IController;
 use App\Services\PersonService;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
-use App\User;
 
 /**
  * Class AuthController
@@ -17,7 +14,7 @@ use App\User;
 class PersonController extends Controller implements IController
 {
     /**
-     * Create user
+     * Create person
      *
      * @param  [string] name
      * @param  [string] email
@@ -71,18 +68,52 @@ class PersonController extends Controller implements IController
 
     public function retreave(Request $request)
     {
-        // TODO: Implement retreave() method.
-    }
+        try {
+            $personService = new PersonService();
+            $array = $request->all();
+            $page = 1;
+            if (array_key_exists('page', $array)) {
+                $page = $array['page'];
+                unset($array['page']);
+            }
+            return response()->json([
+                $personService->retreave($array, $page)
+            ], 200);
 
-    public function retreaveById($id, Request $request)
-    {
-        // TODO: Implement retreaveById() method.
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function delete($id, Request $request)
     {
-        // TODO: Implement delete() method.
+        try {
+            $personService = new PersonService();
+            return response()->json([
+                $personService->delete($id)
+            ], 200);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
+    public function retreaveById($id, Request $request)
+    {
+        try {
+            $personService = new PersonService();
+            return response()->json([
+                $personService->retreaveById($id)
+            ][0], 200);
 
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

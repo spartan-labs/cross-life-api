@@ -100,5 +100,4 @@ class UserController extends Controller implements IController
             ], 500);
         }
     }
-
 }
