@@ -96,12 +96,11 @@ class UserService extends Service
     public function delete(int $id)
     {
         $user = User::find($id);
-        $user->delete();
-        if ($user->id == null) {
-            throw new Exception("Erro ao deletar usuário", 500);
+        $result = true;
+        if (!$user->delete()) {
+            $result= false;
         }
-
-        return "Usuario deletado com sucesso";
+        return $result;
     }
 
     public function login(UserService $user): ?UserService

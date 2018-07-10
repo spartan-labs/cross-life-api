@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\IController;
 use App\Services\PersonService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -27,14 +29,15 @@ class PersonController extends Controller implements IController
     {
         try {
             $request->validate([
-                'email' => 'string|unique:users',
-                'password' => 'required|string',
-                'profile_picture' => 'required|string'
+                'name' => 'required|string',
+                'document' => 'required|string',
+                'born_date' => 'required|date',
+                'gender' => 'required|string'
             ]);
             $personService = new PersonService(json_decode($request->getContent(), true));
             return response()->json([
-                'user_id' => $personService->create(),
-                'message' => 'Usuário criado com sucesso!'
+                'person_id' => $personService->create(),
+                'message' => 'Pessoa criado com sucesso!'
             ], 201);
 
         } catch (Exception $e) {
@@ -44,18 +47,42 @@ class PersonController extends Controller implements IController
         }
     }
 
-    public function update($request)
+    public function update($id, Request $request)
     {
-        // TODO: Implement update() method.
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'document' => 'required|string',
+                'born_date' => 'required|date',
+                'gender' => 'required|string'
+            ]);
+            $personService = new PersonService(json_decode($request->getContent(), true));
+            return response()->json([
+                'person_id' => $personService->update($id),
+                'message' => 'Pessoa alterada com sucesso!'
+            ], 201);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    public function retreave($request)
+    public function retreave(Request $request)
     {
         // TODO: Implement retreave() method.
     }
 
-    public function delete($request)
+    public function retreaveById($id, Request $request)
+    {
+        // TODO: Implement retreaveById() method.
+    }
+
+    public function delete($id, Request $request)
     {
         // TODO: Implement delete() method.
     }
+
+
 }

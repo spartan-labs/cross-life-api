@@ -7,7 +7,9 @@ class Person extends Entity
     protected $fillable = [
         'name',
         'document',
-        'type'
+        'type',
+        'born_date',
+        'gender'
     ];
 
     public function addresses()
