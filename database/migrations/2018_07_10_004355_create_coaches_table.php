@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClassHasPersonTable extends Migration
+class CreateCoachesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateClassHasPersonTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_has_persons', function (Blueprint $table) {
+        Schema::create('coaches', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('class_id')->unsigned()->nullable();
-            $table->foreign('class_id')
-                ->references('id')->on('classes');
+            $table->text('description');
             $table->integer('person_id')->unsigned()->nullable();
-            $table->foreign('person_id')
-                ->references('id')->on('persons');
+            $table->foreign('person_id')->references('id')->on('persons');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateClassHasPersonTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_has_persons');
+        Schema::dropIfExists('personals');
     }
 }

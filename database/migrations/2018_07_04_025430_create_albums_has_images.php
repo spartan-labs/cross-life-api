@@ -22,6 +22,7 @@ class CreateAlbumsHasImages extends Migration
             $table->foreign('images_id')
                 ->references('id')->on('images');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

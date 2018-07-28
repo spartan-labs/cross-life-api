@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\IController;
 use App\Services\UserService;
+use App\Utils\Json;
 use Exception;
 use Illuminate\Http\Request;
-use App\User;
 
 /**
  * Class AuthController
@@ -22,10 +22,10 @@ class UserController extends Controller implements IController
                 'password' => 'required|string',
                 'profile_picture' => 'required|string'
             ]);
-            $userService = new UserService(json_decode($request->getContent(), true));
+            $userService = new UserService(JSON::decode($request->getContent(), true));
             return response()->json([
                 'user_id' => $userService->create(),
-                'message' => 'Usuário criado com sucesso!'
+                'message' => __('messages.user-has-been-created')
             ], 201);
 
         } catch (Exception $e) {

@@ -18,6 +18,7 @@ class CreateBillsTable extends Migration
             $table->increments('id');
             $table->integer('price');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

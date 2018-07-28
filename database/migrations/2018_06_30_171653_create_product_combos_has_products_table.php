@@ -23,6 +23,7 @@ class CreateProductCombosHasProductsTable extends Migration
             $table->foreign('product_combos_id')
                 ->references('id')->on('product_combos');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

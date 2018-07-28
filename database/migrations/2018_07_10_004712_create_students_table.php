@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStudentsTable extends Migration
+class CreateStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,7 @@ class AddStudentsTable extends Migration
             $table->integer('person_id')->unsigned()->nullable();
             $table->foreign('person_id')->references('id')->on('persons');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

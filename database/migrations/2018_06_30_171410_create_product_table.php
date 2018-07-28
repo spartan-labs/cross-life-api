@@ -26,6 +26,7 @@ class CreateProductTable extends Migration
                 ->on('product_categories');
             $table->double('price');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

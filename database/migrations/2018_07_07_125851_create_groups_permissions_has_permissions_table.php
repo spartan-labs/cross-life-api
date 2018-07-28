@@ -22,6 +22,7 @@ class CreateGroupsPermissionsHasPermissionsTable extends Migration
             $table->foreign('permissions_id')
                 ->references('id')->on('permissions');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

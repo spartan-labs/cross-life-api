@@ -22,6 +22,7 @@ class CreatePersonsTable extends Migration
             $table->integer('document');
             $table->string('type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

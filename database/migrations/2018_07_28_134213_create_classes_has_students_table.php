@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCheckInTable extends Migration
+class CreateClassesHasStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateCheckInTable extends Migration
      */
     public function up()
     {
-        Schema::create('check_in', function (Blueprint $table) {
+        Schema::create('class_has_students', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('class_id')->unsigned()->nullable();
-            $table->foreign('class_id')->references('id')->on('classes');
-            $table->integer('person_id')->unsigned()->nullable();
-            $table->foreign('person_id')->references('id')->on('persons');
+            $table->foreign('class_id')
+                ->references('id')->on('classes');
+            $table->integer('student_id')->unsigned()->nullable();
+            $table->foreign('student_id')
+                ->references('id')->on('students');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +32,6 @@ class CreateCheckInTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('check_in');
+        Schema::dropIfExists('classes_has_students');
     }
 }

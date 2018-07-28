@@ -20,6 +20,7 @@ class CreateClassesTable extends Migration
             $table->integer('personal_id')->unsigned()->nullable();
             $table->foreign('personal_id')->references('id')->on('persons');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

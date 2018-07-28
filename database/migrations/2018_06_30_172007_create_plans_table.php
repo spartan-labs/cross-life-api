@@ -17,6 +17,7 @@ class CreatePlansTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->integer('price');
             $table->boolean('seg')->default(true);
             $table->boolean('ter')->default(true);
             $table->boolean('qua')->default(true);

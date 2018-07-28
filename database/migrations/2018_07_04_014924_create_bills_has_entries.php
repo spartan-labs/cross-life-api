@@ -27,6 +27,7 @@ class CreateBillsHasEntries extends Migration
                 ->references('id')->on('bills');
             $table->integer('amount');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
