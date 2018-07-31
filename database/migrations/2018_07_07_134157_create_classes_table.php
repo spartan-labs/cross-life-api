@@ -17,8 +17,8 @@ class CreateClassesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('personal_id')->unsigned()->nullable();
-            $table->foreign('personal_id')->references('id')->on('persons');
+            $table->integer('coach_id')->unsigned()->nullable();
+            $table->foreign('coach_id')->references('id')->on('coaches');
             $table->timestamps();
             $table->softDeletes();
         });

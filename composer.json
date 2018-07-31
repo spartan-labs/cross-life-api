@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "SpartanLabs/SpartanCROSS",
+    "description": "Sparta fork to Crosslife Gym.",
+    "keywords": [""],
     "license": "MIT",
     "type": "project",
     "require": {
