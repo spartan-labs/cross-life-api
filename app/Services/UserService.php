@@ -75,7 +75,9 @@ class UserService extends Service
     public function update(int $id)
     {
         $user = User::find($id);
-        foreach ($this->user as $key => $value) {
+
+
+        foreach ($user as $key => $value) {
             $user->$key = $value;
         }
 

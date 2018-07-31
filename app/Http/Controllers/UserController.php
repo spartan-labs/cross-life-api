@@ -41,13 +41,15 @@ class UserController extends Controller implements IController
             $request->validate([
                 'profile_picture' => 'string'
             ]);
+//            dd($request->route('id'));
             $userService = new UserService($request->object);
-            $userService->update($id);
+            $userService->update((int)$request->route('id'));
         } catch (Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);
         }
+        return null;
     }
 
     public function retreave(Request $request)
@@ -91,7 +93,7 @@ class UserController extends Controller implements IController
         try {
             $userService = new UserService();
             return response()->json([
-                $userService->retreaveById($id)
+                $userService->retreaveById($request->route('id'))
             ][0], 200);
 
         } catch (Exception $e) {
