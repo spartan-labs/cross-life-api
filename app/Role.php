@@ -7,4 +7,8 @@ class Role extends Entity
         'name',
         'description'
     ];
+
+    public function employees() {
+        return $this->hasMany(Employee::class);
+    }
 }

@@ -13,4 +13,8 @@ class Address extends Entity
         'country',
         'state'
     ];
+
+    public function person() {
+        return $this->belongsTo(Person::class);
+    }
 }

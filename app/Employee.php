@@ -10,7 +10,7 @@ class Employee extends Entity
      */
     public function person()
     {
-        return $this->hasOne('App\Person');
+        return $this->hasOne(Person::class);
     }
 
     /**
@@ -18,6 +18,6 @@ class Employee extends Entity
      */
     public function roles()
     {
-        return $this->hasMany('App\Role');
+        return $this->hasMany(Role::class);
     }
 }

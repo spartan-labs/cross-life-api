@@ -13,4 +13,12 @@ class Student extends Entity
     {
         return $this->hasMany(Plan::class);
     }
+
+    public function person() {
+        return $this->hasOne(Person::class);
+    }
+
+    public function user() {
+        return $this->hasOne(User::class);
+    }
 }

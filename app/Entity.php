@@ -12,7 +12,7 @@ abstract class Entity extends Model
 
     public function createdBy()
     {
-        return $this->hasOne('App\User');
+        return $this->hasOne(User::class);
     }
 
     /**
@@ -20,7 +20,7 @@ abstract class Entity extends Model
      */
     public function updatedBy()
     {
-        return $this->hasOne('App\User');
+        return $this->hasOne(User::class);
     }
 
     public function scopeCreatedBy(Builder $query, int $userId)
