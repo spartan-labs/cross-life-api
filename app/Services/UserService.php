@@ -78,7 +78,7 @@ class UserService extends Service
 
 
         foreach ($this->user as $key => $value) {
-            $user->$key = $value;
+            $user->$key  = $value;
         }
 
         $user->save();
@@ -100,7 +100,7 @@ class UserService extends Service
         $user = User::find($id);
         $result = true;
         if (!$user->delete()) {
-            $result= false;
+            $result = false;
         }
         return $result;
     }

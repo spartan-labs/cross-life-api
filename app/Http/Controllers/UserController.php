@@ -14,15 +14,15 @@ use Illuminate\Http\Request;
  */
 class UserController extends Controller implements IController
 {
-    public function create(Request $request)
+    public function create(Request $req)
     {
         try {
-            $request->validate([
+            $req->validate([
                 'email' => 'string|unique:users',
                 'password' => 'required|string',
                 'profile_picture' => 'required|string'
             ]);
-            $userService = new UserService(JSON::decode($request->getContent(), true));
+            $userService = new UserService(JSON::decode($req->getContent(), true));
             return response()->json([
                 'user_id' => $userService->create(),
                 'message' => __('messages.user-has-been-created')
@@ -35,15 +35,15 @@ class UserController extends Controller implements IController
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, Request $req)
     {
         try {
-            $request->validate([
+            $req->validate([
                 'profile_picture' => 'string'
             ]);
-//            dd($request->route('id'));
-            $userService = new UserService($request->object);
-            $userService->update((int)$request->route('id'));
+//            dd($req->route('id'));
+            $userService = new UserService(JSON::decode($req->getContent(), true));
+            $userService->update((int)$req->route('id'));
         } catch (Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
@@ -52,11 +52,11 @@ class UserController extends Controller implements IController
         return null;
     }
 
-    public function retreave(Request $request)
+    public function retreave(Request $req)
     {
         try {
             $userService = new UserService();
-            $array = $request->all();
+            $array = $req->all();
             $page = 1;
             if (array_key_exists('page', $array)) {
                 $page = $array['page'];
@@ -73,12 +73,12 @@ class UserController extends Controller implements IController
         }
     }
 
-    public function delete($id, Request $request)
+    public function delete($id, Request $req)
     {
         try {
             $userService = new UserService();
             return response()->json([
-                $userService->delete($id)
+                $userService->delete((int)$req->route('id'))
             ], 200);
 
         } catch (Exception $e) {
@@ -88,12 +88,12 @@ class UserController extends Controller implements IController
         }
     }
 
-    public function retreaveById($id, Request $request)
+    public function retreaveById($id, Request $req)
     {
         try {
             $userService = new UserService();
             return response()->json([
-                $userService->retreaveById($request->route('id'))
+                $userService->retreaveById($req->route('id'))
             ][0], 200);
 
         } catch (Exception $e) {
