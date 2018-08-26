@@ -14,7 +14,7 @@ class UserService extends Service
      * UserService constructor.
      * @param null $user
      */
-    public function __construct($user = null)
+    public function __construct(User $user = null)
     {
         $this->user = $user;
     }
@@ -69,24 +69,19 @@ class UserService extends Service
 
     /**
      * @param int $id
-     * @return mixed
+     * @return boolean
      * @throws Exception
      */
     public function update(int $id)
     {
+        if (!$id) throw new Exception(__('invalid-id'));
         $user = User::find($id);
-
-
-        foreach ($this->user as $key => $value) {
-            $user->$key  = $value;
-        }
-
-        $user->save();
-        if ($user->id == null) {
-            throw new Exception("Erro ao editar usuário", 500);
-        }
-
-        return $user;
+        $user->profile_picture = $this->user['profile_picture'];
+//        foreach ($this->user as $key => $value) {
+//            $user->$key = $value;
+//        }
+        if (!$user->save()) return false;
+        return true;
     }
 
 

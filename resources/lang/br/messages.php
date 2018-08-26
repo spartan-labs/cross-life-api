@@ -1,8 +1,17 @@
 <?php
 return [
-    'welcome' => 'Bem-vindo',
-    'user-has-been-created' => 'Usuário criado com sucesso!',
-    'unauthorized' => 'Não autorizado',
+    //misc
+    'unauthorized' => 'Requisição não autorizada.',
     'invalid-email-or-pass' => 'E-mail ou senha incorretos.',
-    'logout' => 'Você saiu com sucesso!'
+    'logout' => 'Você saiu com sucesso!',
+    'invalid-id' => 'ID inválido',
+    'welcome' => 'Bem-vindo',
+    //misc
+
+    //user
+    'user-has-been-created' => 'Usuário criado com sucesso!',
+    'user-has-been-updated' => 'Usuário alterado com sucesso!',
+    'user-has-been-deleted' => 'Usuário excluído com sucesso!',
+    'user-has-been-not-deleted' => 'O usuário não pode ser excluído!',
+    //user
 ];

@@ -41,15 +41,16 @@ class UserController extends Controller implements IController
             $req->validate([
                 'profile_picture' => 'string'
             ]);
-//            dd($req->route('id'));
             $userService = new UserService(JSON::decode($req->getContent(), true));
             $userService->update((int)$req->route('id'));
+            return response()->json([
+                'message' => __('messages.user-has-been-updated')
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);
         }
-        return null;
     }
 
     public function retreave(Request $req)
@@ -77,9 +78,11 @@ class UserController extends Controller implements IController
     {
         try {
             $userService = new UserService();
-            return response()->json([
-                $userService->delete((int)$req->route('id'))
-            ], 200);
+            $message = $userService
+                ->delete((int)$req->route('id'))
+                ? __('messages.user-has-been-deleted')
+                : __('messages.user-has-been-not-deleted');
+            return response()->json(['message' => $message], 200);
 
         } catch (Exception $e) {
             return response()->json([
