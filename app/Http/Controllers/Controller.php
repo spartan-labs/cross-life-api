@@ -11,4 +11,11 @@ abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function messages()
+    {
+        return [
+            'email.required' => 'Er, you forgot your email address!',
+            'email.unique' => 'Email already taken m8',
+        ];
+    }
 }
