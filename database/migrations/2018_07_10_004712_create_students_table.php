@@ -13,6 +13,7 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('students');
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('person_id')->unsigned()->nullable();

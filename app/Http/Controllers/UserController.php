@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\IController;
 use App\Services\UserService;
+use App\User;
 use App\Utils\Json;
+use Dotenv\Exception\ValidationException;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -22,15 +24,16 @@ class UserController extends Controller implements IController
                 'password' => 'required|string',
                 'profile_picture' => 'required|string'
             ]);
-            $userService = new UserService(JSON::decode($req->getContent(), true));
+            $userService = new UserService(JSON::decode($req->getContent()));
+
             return response()->json([
                 'user_id' => $userService->create(),
                 'message' => __('messages.user-has-been-created')
             ], 201);
 
-        } catch (Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessageBag()
             ], 500);
         }
     }

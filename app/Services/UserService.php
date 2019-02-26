@@ -12,9 +12,9 @@ class UserService extends Service
 
     /**
      * UserService constructor.
-     * @param null $user
+     * @param null|User $user
      */
-    public function __construct(User $user = null)
+    public function __construct($user = null)
     {
         $this->user = $user;
     }

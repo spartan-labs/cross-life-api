@@ -13,15 +13,7 @@ use Illuminate\Http\Request;
  */
 class PersonController extends Controller implements IController
 {
-    /**
-     * Create person
-     *
-     * @param  [string] name
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [string] password_confirmation
-     * @return [string] message
-     */
+
     public function create(Request $request)
     {
         try {
@@ -51,13 +43,13 @@ class PersonController extends Controller implements IController
                 'name' => 'required|string',
                 'document' => 'required|string',
                 'born_date' => 'required|date',
-                'gender' => 'required|string'
+                'gender' => 'required|string|in:male,female,other'
             ]);
             $personService = new PersonService(json_decode($request->getContent(), true));
             return response()->json([
                 'person_id' => $personService->update($id),
                 'message' => 'Pessoa alterada com sucesso!'
-            ], 201);
+            ], 200);
 
         } catch (Exception $e) {
             return response()->json([

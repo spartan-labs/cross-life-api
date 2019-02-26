@@ -13,6 +13,7 @@ class CreateAlbumsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('albums');
         Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

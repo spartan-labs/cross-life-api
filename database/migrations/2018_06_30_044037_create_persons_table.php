@@ -13,9 +13,7 @@ class CreatePersonsTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('persons')) {
-            Schema::drop('persons');
-        }
+        Schema::dropIfExists('persons');
         Schema::create('persons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

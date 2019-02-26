@@ -13,6 +13,7 @@ class CreateGroupsPermissionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('group_permissions');
         Schema::create('group_permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

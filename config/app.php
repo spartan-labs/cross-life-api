@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'br',
     'locales' => ['br', 'en'],
 
     /*

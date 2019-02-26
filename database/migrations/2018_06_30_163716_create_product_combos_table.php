@@ -13,6 +13,7 @@ class CreateProductCombosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('product_combos');
         Schema::create('product_combos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

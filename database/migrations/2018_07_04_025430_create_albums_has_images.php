@@ -13,6 +13,7 @@ class CreateAlbumsHasImages extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('albums_has_images');
         Schema::create('albums_has_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('albums_id')->unsigned()->nullable();

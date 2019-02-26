@@ -13,6 +13,7 @@ class CreatePlansTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('plans');
         Schema::create('plans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
