@@ -34,4 +34,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Person::class);
     }
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
+    }
+
+    public function groupPermissions()
+    {
+        return $this->hasMany(GroupPermission::class);
+    }
+
+    public function hasPermission($userId, $permissionName)
+    {
+        return count(Permission::where('user_id', $userId)->where('name', $permissionName)) > 0 ? true : false;
+    }
 }
